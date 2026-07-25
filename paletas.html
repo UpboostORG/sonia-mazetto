@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propostas de Paleta — Sonia Mazetto</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Figtree", sans-serif;
+      background: #eef1f2;
+      color: #22333c;
+      line-height: 1.6;
+      padding: clamp(24px, 5vw, 64px) clamp(16px, 4vw, 48px);
+    }
+    h1, h2, h3 { font-family: "Plus Jakarta Sans", sans-serif; margin: 0; letter-spacing: -0.015em; }
+    .intro { max-width: 760px; margin: 0 auto clamp(36px, 5vw, 56px); text-align: center; }
+    .intro h1 { font-size: clamp(26px, 3.5vw, 38px); margin-bottom: 12px; }
+    .intro p { color: #52646d; margin: 0; }
+
+    .palette {
+      max-width: 1080px;
+      margin: 0 auto clamp(40px, 6vw, 72px);
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(22, 51, 62, 0.1);
+    }
+    .palette-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 26px 32px 18px;
+    }
+    .palette-head h2 { font-size: 22px; }
+    .palette-head p { margin: 0; font-size: 14.5px; color: #52646d; }
+
+    .swatches { display: flex; }
+    .swatch { flex: 1; padding: 18px 10px 14px; text-align: center; }
+    .swatch code { display: block; font-size: 11.5px; opacity: 0.85; margin-top: 4px; }
+    .swatch span { font-size: 12px; font-weight: 600; }
+
+    /* mini-mockup */
+    .mock { padding: clamp(28px, 4vw, 52px); }
+    .mock-hero {
+      border-radius: 18px;
+      padding: clamp(28px, 4vw, 48px);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .mock-hero img { width: 100%; border-radius: 14px; display: block; }
+    .mock-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; margin: 0 0 12px;
+    }
+    .mock-hero h3 { font-size: clamp(22px, 2.8vw, 32px); line-height: 1.15; margin-bottom: 12px; }
+    .mock-hero p.lead { font-size: 15px; margin: 0 0 22px; }
+    .mock-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .mock-btn {
+      display: inline-block; padding: 11px 22px; border-radius: 999px;
+      font-family: "Plus Jakarta Sans", sans-serif; font-size: 13.5px; font-weight: 600;
+      border: 1.5px solid transparent;
+    }
+    .mock-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .mock-card { border-radius: 16px; padding: 22px 24px; }
+    .mock-kicker {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; margin: 0 0 8px;
+    }
+    .mock-card h4 { font-family: "Plus Jakarta Sans", sans-serif; font-size: 16.5px; margin: 0 0 6px; }
+    .mock-card p { font-size: 13.5px; margin: 0; }
+
+    @media (max-width: 720px) {
+      .mock-hero { grid-template-columns: 1fr; }
+      .mock-cards { grid-template-columns: 1fr; }
+      .swatch code { font-size: 10px; }
+    }
+
+    /* =============== OPÇÃO 1 — Serenidade =============== */
+    .p1 .mock { background: #faf7f2; }
+    .p1 .mock-hero { background: #f0e9dd; }
+    .p1 .mock-eyebrow { color: #216b7a; }
+    .p1 .mock-hero h3 { color: #123844; }
+    .p1 .mock-hero h3 em { color: #216b7a; font-style: normal; }
+    .p1 .mock-hero p.lead { color: #5b6a6e; }
+    .p1 .btn-a { background: #216b7a; color: #fff; }
+    .p1 .btn-b { border-color: #d9cfbc; color: #123844; background: #faf7f2; }
+    .p1 .mock-card { background: #fff; border: 1px solid #e9e1d4; }
+    .p1 .mock-kicker { color: #b98a4a; }
+    .p1 .mock-card h4 { color: #123844; }
+    .p1 .mock-card p { color: #5b6a6e; }
+
+    /* =============== OPÇÃO 2 — Vitalidade =============== */
+    .p2 .mock { background: #ffffff; }
+    .p2 .mock-hero { background: #e2f3f4; }
+    .p2 .mock-eyebrow { color: #0f8a99; }
+    .p2 .mock-hero h3 { color: #0f2e38; }
+    .p2 .mock-hero h3 em { color: #0f8a99; font-style: normal; }
+    .p2 .mock-hero p.lead { color: #4f6570; }
+    .p2 .btn-a { background: #ef6f5a; color: #fff; }
+    .p2 .btn-b { border-color: #cde5e8; color: #0f2e38; background: #fff; }
+    .p2 .mock-card { background: #f4fafa; }
+    .p2 .mock-kicker { color: #ef6f5a; }
+    .p2 .mock-card h4 { color: #0f2e38; }
+    .p2 .mock-card p { color: #4f6570; }
+
+    /* =============== OPÇÃO 3 — Essência =============== */
+    .p3 .mock { background: #f7f9fa; }
+    .p3 .mock-hero { background: #0e2433; }
+    .p3 .mock-eyebrow { color: #7fc0cf; }
+    .p3 .mock-hero h3 { color: #ffffff; }
+    .p3 .mock-hero h3 em { color: #7fc0cf; font-style: normal; }
+    .p3 .mock-hero p.lead { color: #b9cdd6; }
+    .p3 .btn-a { background: #7fc0cf; color: #0e2433; }
+    .p3 .btn-b { border-color: rgba(255,255,255,0.4); color: #fff; }
+    .p3 .mock-card { background: #ffffff; border: 1px solid #e2eaee; }
+    .p3 .mock-kicker { color: #327687; }
+    .p3 .mock-card h4 { color: #0e2433; }
+    .p3 .mock-card p { color: #4f6570; }
+  </style>
+</head>
+<body>
+
+  <div class="intro">
+    <h1>3 propostas de paleta — Sonia Mazetto</h1>
+    <p>Todas partem das cores da logo (azul-tinta + petróleo). Os mockups abaixo mostram cada paleta aplicada ao hero e aos cards do site real.</p>
+  </div>
+
+  <!-- ================= OPÇÃO 1 ================= -->
+  <section class="palette p1">
+    <div class="palette-head">
+      <h2>1 · Serenidade — petróleo &amp; areia</h2>
+      <p>Acolhedora e premium: fundos quentes de areia, petróleo da logo, âmbar discreto.</p>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#123844;color:#fff"><span>Tinta</span><code>#123844</code></div>
+      <div class="swatch" style="background:#216b7a;color:#fff"><span>Petróleo</span><code>#216B7A</code></div>
+      <div class="swatch" style="background:#b98a4a;color:#fff"><span>Âmbar</span><code>#B98A4A</code></div>
+      <div class="swatch" style="background:#f0e9dd;color:#123844"><span>Areia</span><code>#F0E9DD</code></div>
+      <div class="swatch" style="background:#faf7f2;color:#123844;border:1px solid #eee"><span>Fundo</span><code>#FAF7F2</code></div>
+    </div>
+    <div class="mock">
+      <div class="mock-hero">
+        <div>
+          <p class="mock-eyebrow">Comunicação · Oratória · Influência</p>
+          <h3>A <em>1ª Gestora de Potencial Humano</em> do Brasil</h3>
+          <p class="lead">Há mais de 30 anos, Sonia Mazetto ajuda pessoas, líderes e empresas a se comunicarem melhor.</p>
+          <div class="mock-actions">
+            <span class="mock-btn btn-a">Falar com a Sonia</span>
+            <span class="mock-btn btn-b">Conhecer o curso</span>
+          </div>
+        </div>
+        <img src="assets/sonia-sobre.jpg" alt="Sonia Mazetto">
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card">
+          <p class="mock-kicker">Individual</p>
+          <h4>Mentoria em Comunicação e Oratória</h4>
+          <p>Voz, presença e segurança para qualquer palco.</p>
+        </div>
+        <div class="mock-card">
+          <p class="mock-kicker">Empresas · NR-1</p>
+          <h4>Coral Corporativo</h4>
+          <p>Música como estratégia de saúde mental.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OPÇÃO 2 ================= -->
+  <section class="palette p2">
+    <div class="palette-head">
+      <h2>2 · Vitalidade — teal vivo &amp; coral</h2>
+      <p>Energética e humana: teal mais vibrante, coral quente nos CTAs, branco absoluto.</p>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#0f2e38;color:#fff"><span>Tinta</span><code>#0F2E38</code></div>
+      <div class="swatch" style="background:#0f8a99;color:#fff"><span>Teal vivo</span><code>#0F8A99</code></div>
+      <div class="swatch" style="background:#ef6f5a;color:#fff"><span>Coral</span><code>#EF6F5A</code></div>
+      <div class="swatch" style="background:#e2f3f4;color:#0f2e38"><span>Lavagem</span><code>#E2F3F4</code></div>
+      <div class="swatch" style="background:#ffffff;color:#0f2e38;border:1px solid #eee"><span>Fundo</span><code>#FFFFFF</code></div>
+    </div>
+    <div class="mock">
+      <div class="mock-hero">
+        <div>
+          <p class="mock-eyebrow">Comunicação · Oratória · Influência</p>
+          <h3>A <em>1ª Gestora de Potencial Humano</em> do Brasil</h3>
+          <p class="lead">Há mais de 30 anos, Sonia Mazetto ajuda pessoas, líderes e empresas a se comunicarem melhor.</p>
+          <div class="mock-actions">
+            <span class="mock-btn btn-a">Falar com a Sonia</span>
+            <span class="mock-btn btn-b">Conhecer o curso</span>
+          </div>
+        </div>
+        <img src="assets/sonia-sobre.jpg" alt="Sonia Mazetto">
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card">
+          <p class="mock-kicker">Individual</p>
+          <h4>Mentoria em Comunicação e Oratória</h4>
+          <p>Voz, presença e segurança para qualquer palco.</p>
+        </div>
+        <div class="mock-card">
+          <p class="mock-kicker">Empresas · NR-1</p>
+          <h4>Coral Corporativo</h4>
+          <p>Música como estratégia de saúde mental.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OPÇÃO 3 ================= -->
+  <section class="palette p3">
+    <div class="palette-head">
+      <h2>3 · Essência — azul-noite &amp; céu</h2>
+      <p>Autoridade máxima: hero escuro em azul-tinta profundo, azul-céu como luz, resto do site claro.</p>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#0e2433;color:#fff"><span>Azul-noite</span><code>#0E2433</code></div>
+      <div class="swatch" style="background:#327687;color:#fff"><span>Petróleo</span><code>#327687</code></div>
+      <div class="swatch" style="background:#7fc0cf;color:#0e2433"><span>Céu</span><code>#7FC0CF</code></div>
+      <div class="swatch" style="background:#e2eaee;color:#0e2433"><span>Névoa</span><code>#E2EAEE</code></div>
+      <div class="swatch" style="background:#f7f9fa;color:#0e2433;border:1px solid #eee"><span>Fundo</span><code>#F7F9FA</code></div>
+    </div>
+    <div class="mock">
+      <div class="mock-hero">
+        <div>
+          <p class="mock-eyebrow">Comunicação · Oratória · Influência</p>
+          <h3>A <em>1ª Gestora de Potencial Humano</em> do Brasil</h3>
+          <p class="lead">Há mais de 30 anos, Sonia Mazetto ajuda pessoas, líderes e empresas a se comunicarem melhor.</p>
+          <div class="mock-actions">
+            <span class="mock-btn btn-a">Falar com a Sonia</span>
+            <span class="mock-btn btn-b">Conhecer o curso</span>
+          </div>
+        </div>
+        <img src="assets/sonia-sobre.jpg" alt="Sonia Mazetto">
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card">
+          <p class="mock-kicker">Individual</p>
+          <h4>Mentoria em Comunicação e Oratória</h4>
+          <p>Voz, presença e segurança para qualquer palco.</p>
+        </div>
+        <div class="mock-card">
+          <p class="mock-kicker">Empresas · NR-1</p>
+          <h4>Coral Corporativo</h4>
+          <p>Música como estratégia de saúde mental.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

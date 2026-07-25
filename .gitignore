@@ -1,0 +1,14 @@
+# Dependências / build
+node_modules/
+.vercel/
+
+# Originais grandes (já otimizados em assets/)
+WhatsApp Image*.jpeg
+Logo Sonia Mazetto SM.pdf
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Preview local
+.claude/launch.json
