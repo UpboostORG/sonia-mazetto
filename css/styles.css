@@ -1352,6 +1352,162 @@ a { color: var(--teal); text-decoration: none; }
 .method-row .method-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); }
 .method-row .method-value { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); }
 
+/* ---------- Página de vendas: preços ---------- */
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 30px);
+  max-width: 880px;
+  margin-inline: auto;
+  align-items: stretch;
+}
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 4px);
+  padding: clamp(30px, 4vw, 46px);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.price-card.featured {
+  border-color: var(--teal);
+  box-shadow: 0 20px 50px rgba(14, 36, 51, 0.12);
+}
+.price-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.price-badge {
+  position: absolute;
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.price-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 10px;
+}
+.price-card h3 { font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 8px; }
+.price-desc { font-size: 14.5px; color: var(--text); margin: 0 0 24px; }
+.price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.price .amount {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5vw, 50px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.price .currency { font-size: 20px; font-weight: 600; color: var(--ink); }
+.price .period { font-size: 15px; color: var(--text); }
+.price .installment { flex-basis: 100%; font-size: 14px; color: var(--text); margin-top: 4px; }
+.price-old { font-size: 15px; color: var(--text); text-decoration: line-through; opacity: 0.7; margin: 0 0 4px; }
+.price-features {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  flex-grow: 1;
+  display: grid;
+  gap: 12px;
+}
+.price-features li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 15px;
+  color: var(--ink);
+}
+.price-features li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 3px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--teal-soft);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23327687' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-10'/%3E%3C/svg%3E");
+  background-size: 11px; background-position: center; background-repeat: no-repeat;
+}
+.price-features li.muted { color: var(--text); }
+.price-features li.muted::before { background-color: #eef2f3; filter: grayscale(1); opacity: 0.6; }
+.price-card .btn { width: 100%; text-align: center; padding: 16px 24px; }
+.price-note { font-size: 12.5px; color: var(--text); text-align: center; margin: 14px 0 0; }
+
+/* ---------- Garantia ---------- */
+.guarantee {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 32px);
+  max-width: 760px;
+  margin-inline: auto;
+  background: var(--teal-soft);
+  border-radius: var(--radius);
+  padding: clamp(26px, 3.5vw, 40px);
+}
+.guarantee-badge {
+  flex-shrink: 0;
+  width: 96px; height: 96px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--teal);
+  color: var(--teal);
+  line-height: 1.1;
+}
+.guarantee-badge strong { font-family: var(--font-display); font-size: 26px; display: block; }
+.guarantee-badge span { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.guarantee h3 { font-size: 20px; margin-bottom: 6px; }
+.guarantee p { font-size: 15px; margin: 0; }
+
+/* ---------- Comparativo de trilhas ---------- */
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.5vw, 26px);
+}
+.track-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(28px, 3.5vw, 42px);
+}
+.track-card.is-pro { background: var(--ink); color: #fff; border-color: transparent; }
+.track-tag {
+  display: inline-block;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 16px;
+  background: var(--teal-soft); color: var(--teal);
+}
+.track-card.is-pro .track-tag { background: rgba(127,192,207,0.2); color: var(--sky); }
+.track-card h3 { font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 10px; }
+.track-card.is-pro h3 { color: #fff; }
+.track-card > p { font-size: 15px; color: var(--text); }
+.track-card.is-pro > p { color: #c3d5dd; }
+.track-list { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 10px; }
+.track-list li { position: relative; padding-left: 26px; font-size: 14.5px; }
+.track-list li::before { content: "→"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+.track-card.is-pro .track-list li::before { color: var(--sky); }
+
 /* ---------- Revelação ao rolar ---------- */
 
 .reveal {
@@ -1534,6 +1690,10 @@ a { color: var(--teal); text-decoration: none; }
   /* rodapé em coluna única */
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+  /* vendas em coluna única */
+  .pricing-grid, .track-grid { grid-template-columns: 1fr; }
+  .guarantee { flex-direction: column; text-align: center; }
 
   .contact-photo { max-width: 420px; }
 
