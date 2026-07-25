@@ -1571,6 +1571,125 @@ a { color: var(--teal); text-decoration: none; }
 .track-list li::before { content: "→"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
 .track-card.is-pro .track-list li::before { color: var(--sky); }
 
+/* ---------- Faixa animada (marquee) ---------- */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(16px, 2.2vw, 26px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.marquee.on-dark {
+  background: var(--ink);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.marquee.on-soft { background: var(--teal-soft); border-color: transparent; }
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(26px, 4vw, 48px);
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(26px, 4vw, 48px);
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2.3vw, 27px);
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+.marquee.on-dark .marquee-item { color: #fff; }
+.marquee-item::after {
+  content: "✦";
+  font-family: var(--font-body);
+  font-size: 0.5em;
+  color: var(--teal);
+  transform: translateY(-2px);
+}
+.marquee.on-dark .marquee-item::after { color: var(--sky); }
+
+@keyframes marquee { to { transform: translateX(calc(-50% - clamp(13px, 2vw, 24px))); } }
+
+/* ---------- Tira de números em destaque ---------- */
+.figure-band {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 40px);
+  text-align: center;
+}
+.figure-band .fb-num {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.4vw, 52px);
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.figure-band .fb-label {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+/* ---------- Citação grande com destaque ---------- */
+.quote-feature {
+  max-width: 900px;
+  margin-inline: auto;
+  text-align: center;
+}
+.quote-feature .q-mark {
+  font-family: var(--font-display);
+  font-size: 80px;
+  line-height: 0.5;
+  color: var(--teal-soft);
+  display: block;
+  margin-bottom: 10px;
+}
+.quote-feature p {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.4vw, 40px);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.quote-feature cite {
+  display: block;
+  margin-top: 22px;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+/* ---------- Zoom leve ligado ao scroll (progressive enhancement) ---------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-zoom img, img.scroll-zoom {
+      animation: szoom linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+    @keyframes szoom {
+      from { transform: scale(1.12); }
+      to   { transform: scale(1); }
+    }
+  }
+}
+
 /* ---------- Revelação ao rolar ---------- */
 
 .reveal {
@@ -1754,6 +1873,8 @@ a { color: var(--teal); text-decoration: none; }
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 
+  .figure-band { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
+
   /* vendas em coluna única */
   .pricing-grid, .track-grid, .plans-lead { grid-template-columns: 1fr; }
   .guarantee { flex-direction: column; text-align: center; }
@@ -1796,6 +1917,7 @@ a { color: var(--teal); text-decoration: none; }
   .reveal { opacity: 1; transform: none; filter: none; transition: none; }
   .img-reveal img { clip-path: none; transform: none; }
   .scroll-progress { display: none; }
+  .marquee-track { animation: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

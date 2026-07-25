@@ -66,7 +66,7 @@
   }
 
   /* Prepara os números para contagem (preserva prefixo/sufixo) */
-  document.querySelectorAll(".stat .num").forEach((el) => {
+  document.querySelectorAll(".stat .num, .fb-num").forEach((el) => {
     const m = el.textContent.trim().match(/^([^\d]*)(\d+)(.*)$/);
     if (!m) return;
     el.dataset.prefix = m[1];
@@ -75,8 +75,8 @@
     if (!reduced) el.textContent = m[1] + "0" + m[3];
   });
   const triggerCount = (el) => {
-    const num = el.matches(".num") ? el : el.querySelector(".num[data-count]");
-    if (num) animateCount(num);
+    const nums = el.matches("[data-count]") ? [el] : el.querySelectorAll("[data-count]");
+    nums.forEach(animateCount);
   };
 
   /* Revelação ao rolar (com escalonamento por grade) */
@@ -87,7 +87,8 @@
     ".article-card", ".featured-article", ".contact-copy",
     ".stat", ".tl-item", ".persona", ".module", ".step", ".format-card",
     ".faq", ".cta-band", ".credentials", ".check-list", ".course-topics",
-    ".hero-chips", ".gallery figure"
+    ".hero-chips", ".gallery figure", ".figure-band", ".quote-feature",
+    ".track-card", ".price-card", ".plans-lead-copy"
   ].join(", ");
   document.querySelectorAll(autoSelector).forEach((el) => el.classList.add("reveal"));
 
