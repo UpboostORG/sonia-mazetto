@@ -28,34 +28,92 @@
     });
   }
 
-  /* Revelação ao rolar (com escalonamento por grade) */
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* Barra de progresso de scroll */
+  if (!reduced) {
+    const bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    document.body.appendChild(bar);
+    let ticking = false;
+    const updateBar = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+      bar.style.width = pct + "%";
+      ticking = false;
+    };
+    updateBar();
+    window.addEventListener("scroll", () => {
+      if (!ticking) { requestAnimationFrame(updateBar); ticking = true; }
+    }, { passive: true });
+  }
+
+  /* Contador animado */
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.count);
+    if (isNaN(target)) return;
+    const suffix = el.dataset.suffix || "";
+    const prefix = el.dataset.prefix || "";
+    const dur = 1500;
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* Prepara os números para contagem (preserva prefixo/sufixo) */
+  document.querySelectorAll(".stat .num").forEach((el) => {
+    const m = el.textContent.trim().match(/^([^\d]*)(\d+)(.*)$/);
+    if (!m) return;
+    el.dataset.prefix = m[1];
+    el.dataset.count = m[2];
+    el.dataset.suffix = m[3];
+    if (!reduced) el.textContent = m[1] + "0" + m[3];
+  });
+  const triggerCount = (el) => {
+    const num = el.matches(".num") ? el : el.querySelector(".num[data-count]");
+    if (num) animateCount(num);
+  };
+
+  /* Revelação ao rolar (com escalonamento por grade) */
   const autoSelector = [
-    ".section-head", ".course-card", ".about-photo", ".about-copy",
+    ".section-head", ".course-card", ".about-copy",
     ".service-card", ".coral-col", ".coral-note", ".pull-quote",
     ".talk", ".talks-photos figure", ".project-card", ".media-card",
-    ".article-card", ".featured-article", ".contact-copy", ".contact-photo"
+    ".article-card", ".featured-article", ".contact-copy",
+    ".stat", ".tl-item", ".persona", ".module", ".step", ".format-card",
+    ".faq", ".cta-band", ".credentials", ".check-list", ".course-topics",
+    ".hero-chips", ".gallery figure"
   ].join(", ");
   document.querySelectorAll(autoSelector).forEach((el) => el.classList.add("reveal"));
+
+  /* Fotos grandes revelam com "wipe" + zoom */
+  document
+    .querySelectorAll(".about-photo, .editorial-photo, .course-photo, .contact-photo")
+    .forEach((el) => el.classList.add("img-reveal"));
 
   /* Escalonamento suave para filhos de grades */
   const grids = document.querySelectorAll(
     ".service-grid, .article-grid, .media-cards, .project-grid, .persona-grid, " +
-    ".format-grid, .steps, .stat-row, .gallery, .talk-list, .module-list"
+    ".format-grid, .steps, .stat-row, .gallery, .talk-list, .module-list, " +
+    ".credentials, .check-list, .hero-chips"
   );
   grids.forEach((grid) => {
     Array.from(grid.children).forEach((child, i) => {
-      if (child.classList.contains("reveal") || child.matches(autoSelector)) {
-        child.style.setProperty("--reveal-delay", `${Math.min(i, 6) * 75}ms`);
+      if (child.classList.contains("reveal")) {
+        child.style.setProperty("--reveal-delay", `${Math.min(i, 6) * 70}ms`);
       }
     });
   });
 
-  const all = Array.from(document.querySelectorAll(".reveal"));
+  const all = Array.from(document.querySelectorAll(".reveal, .img-reveal"));
 
   if (reduced || !("IntersectionObserver" in window)) {
-    all.forEach((el) => el.classList.add("is-visible"));
+    all.forEach((el) => { el.classList.add("is-visible"); triggerCount(el); });
   } else {
     const vh = window.innerHeight || document.documentElement.clientHeight;
     const io = new IntersectionObserver(
@@ -63,6 +121,7 @@
         for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
+            triggerCount(entry.target);
             io.unobserve(entry.target);
           }
         }
@@ -70,9 +129,9 @@
       { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
     );
     all.forEach((el) => {
-      // conteúdo já visível no carregamento aparece de imediato
       if (el.getBoundingClientRect().top < vh * 0.92) {
         el.classList.add("is-visible");
+        triggerCount(el);
       } else {
         io.observe(el);
       }
