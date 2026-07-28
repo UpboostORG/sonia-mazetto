@@ -1588,6 +1588,28 @@ a { color: var(--teal); text-decoration: none; }
 .logo-wall span:hover{ border-color:var(--teal); transform:translateY(-3px); box-shadow:var(--shadow); }
 .trusted-note{ text-align:center; font-size:13.5px; color:var(--text); margin-top:24px; }
 
+/* ---------- Logo cloud estilo SaaS (marcas passando) ---------- */
+.logo-marquee{
+  position:relative; overflow:hidden; display:grid; gap:14px;
+  margin-top:clamp(26px,4vw,44px);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.lm-row{ display:flex; width:max-content; will-change:transform; }
+.lm-row.r1{ animation:lm-scroll 52s linear infinite; }
+.lm-row.r2{ animation:lm-scroll 46s linear infinite reverse; }
+.logo-marquee:hover .lm-row{ animation-play-state:paused; }
+.lm-item{
+  flex:0 0 auto; display:inline-flex; align-items:center; gap:9px;
+  height:56px; padding:0 clamp(18px,2.5vw,36px);
+  font-family:var(--font-display); font-weight:600; font-size:clamp(14.5px,1.5vw,18px);
+  letter-spacing:-.01em; white-space:nowrap; color:#94a7ae;
+  transition:color .3s var(--ease);
+}
+.lm-item::before{ content:""; width:8px; height:8px; border-radius:50%; background:currentColor; opacity:.4; flex:0 0 auto; }
+.lm-item:hover{ color:var(--teal); }
+@keyframes lm-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
 /* ---------- Faixa animada (marquee) ---------- */
 .marquee {
   position: relative;
@@ -1937,6 +1959,7 @@ a { color: var(--teal); text-decoration: none; }
   .img-reveal img { clip-path: none; transform: none; }
   .scroll-progress { display: none; }
   .marquee-track { animation: none; }
+  .lm-row { animation: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
