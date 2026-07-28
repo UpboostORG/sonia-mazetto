@@ -15,3 +15,7 @@ Thumbs.db
 
 .vercel
 .env*
+
+# Apresentação (entregável local, fora do site público)
+apresentacao/
+Upboost Studio*.pdf
