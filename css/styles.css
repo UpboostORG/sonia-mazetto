@@ -1608,6 +1608,13 @@ a { color: var(--teal); text-decoration: none; }
 }
 .lm-item::before{ content:""; width:8px; height:8px; border-radius:50%; background:currentColor; opacity:.4; flex:0 0 auto; }
 .lm-item:hover{ color:var(--teal); }
+.lm-item .lm-logo{
+  height:30px; width:auto; max-width:82px; object-fit:contain; display:block; flex:0 0 auto;
+  filter:grayscale(1); opacity:.62; transition:filter .3s var(--ease), opacity .3s var(--ease);
+}
+.lm-item.has-logo{ color:var(--ink); }
+.lm-item.has-logo::before{ display:none; }
+.lm-item.has-logo:hover .lm-logo{ filter:none; opacity:1; }
 @keyframes lm-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
 /* ---------- Faixa animada (marquee) ---------- */
