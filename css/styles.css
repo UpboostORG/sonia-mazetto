@@ -288,17 +288,102 @@ a { color: var(--teal); text-decoration: none; }
   border-radius: 999px;
   padding: 7px 16px;
 }
-/* chips que são links: área clicável cobre a pílula inteira */
-.hero-chips li:has(a) { padding: 0; }
-.hero-chips li a {
+/* chips interativos (link ou botão): área clicável cobre a pílula inteira */
+.hero-chips li:has(a),
+.hero-chips li:has(button) { padding: 0; }
+.hero-chips li a,
+.hero-chips li button {
   display: block;
   padding: 7px 16px;
   color: inherit;
   text-decoration: none;
   border-radius: 999px;
+  background: none;
+  border: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
 }
-.hero-chips li:hover { border-color: var(--sky); color: #fff; }
-.hero-chips li a:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+/* hover só nos chips que realmente fazem algo */
+.hero-chips li:has(a):hover,
+.hero-chips li:has(button):hover { border-color: var(--sky); color: #fff; transform: translateY(-3px); }
+.hero-chips li a:focus-visible,
+.hero-chips li button:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+
+/* ---------- Modal de credenciais ---------- */
+.cred-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(6, 18, 27, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.cred-overlay.is-open { opacity: 1; }
+.cred-overlay[hidden] { display: none; }
+
+.cred-modal {
+  position: relative;
+  width: min(480px, 100%);
+  background:
+    radial-gradient(420px 260px at 85% 0%, rgba(127, 192, 207, 0.16), transparent 60%),
+    var(--ink);
+  color: #fff;
+  border: 1px solid rgba(127, 192, 207, 0.25);
+  border-radius: 22px;
+  padding: clamp(28px, 5vw, 42px);
+  box-shadow: 0 40px 90px rgba(4, 14, 22, 0.6);
+  transform: translateY(14px) scale(0.97);
+  transition: transform 0.35s var(--ease);
+}
+.cred-overlay.is-open .cred-modal { transform: none; }
+
+.cred-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin: 0 0 10px;
+}
+.cred-modal h3 {
+  color: #fff;
+  font-size: clamp(22px, 3vw, 28px);
+  margin-bottom: 12px;
+}
+.cred-text { font-size: 15.5px; line-height: 1.65; color: #c3d5dd; margin: 0 0 24px; }
+.cred-link.btn {
+  background: var(--sky);
+  color: var(--ink);
+  box-shadow: none;
+}
+.cred-link.btn:hover { background: #96ccd9; }
+
+.cred-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: #cfe0e7;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.cred-close:hover { background: var(--sky); color: var(--ink); }
+.cred-close:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
 
 .hero-photo {
   margin: 0;
