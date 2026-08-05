@@ -502,8 +502,10 @@ a { color: var(--teal); text-decoration: none; }
 
 .credentials > div {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
-  gap: 16px;
+  /* a 1ª coluna precisa comportar o rótulo mais longo ("COMPORTAMENTO" ≈ 132px)
+     — com 1fr ela encolhia e o texto invadia a coluna da direita */
+  grid-template-columns: minmax(152px, 0.9fr) minmax(0, 2.2fr);
+  gap: 14px 26px;
   padding: 15px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -511,15 +513,18 @@ a { color: var(--teal); text-decoration: none; }
 .credentials dt {
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
   text-transform: uppercase;
   color: var(--teal);
   padding-top: 3px;
+  overflow-wrap: break-word;
 }
 
 .credentials dd {
   margin: 0;
   font-size: 15.5px;
+  line-height: 1.6;
   color: var(--ink);
 }
 
@@ -1202,7 +1207,7 @@ a { color: var(--teal); text-decoration: none; }
   color: var(--teal);
   margin: 0 0 6px;
 }
-.tl-item h3 { font-size: clamp(20px, 2.3vw, 26px); margin-bottom: 8px; }
+.tl-item h3 { font-size: clamp(20px, 2.3vw, 26px); line-height: 1.3; margin-bottom: 8px; }
 .tl-item p { font-size: 15.5px; margin: 0; max-width: 60ch; }
 
 /* ---------- Galeria ---------- */
@@ -1254,6 +1259,25 @@ a { color: var(--teal); text-decoration: none; }
 }
 .persona h3 { font-size: 19px; margin-bottom: 8px; }
 .persona p { font-size: 15px; margin: 0; }
+
+/* lista de cargos (liderança associativa) */
+.role-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.role-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.role-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.role-list strong { color: var(--ink); font-weight: 600; }
 
 /* ---------- Módulos / programa ---------- */
 
@@ -2018,6 +2042,10 @@ a { color: var(--teal); text-decoration: none; }
   .figure-band { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
   .logo-wall { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .logo-wall span { min-height:56px; font-size:12.5px; }
+
+  /* rótulo e descrição empilhados no celular — evita coluna espremida */
+  .credentials > div { grid-template-columns: 1fr; gap: 5px; }
+  .credentials dt { padding-top: 0; }
 
   /* vendas em coluna única */
   .pricing-grid, .track-grid, .plans-lead { grid-template-columns: 1fr; }

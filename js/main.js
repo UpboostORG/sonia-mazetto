@@ -162,9 +162,15 @@
   const CREDS = {
     fono: {
       kicker: "Formação clínica",
-      title: "Fonoaudióloga",
+      title: "Fonoaudióloga Clínica",
       text: "Especializada em Motricidade Orofacial, Sonia começou onde a comunicação nasce: a clínica. É a base científica do método — voz, respiração e articulação tratadas como fenômenos do corpo.",
       link: "sobre.html#formacao", label: "Ver a trajetória completa",
+    },
+    mentora: {
+      kicker: "Mentoria",
+      title: "Mentora em Comunicação e Oratória",
+      text: "Acompanhamento individual para quem precisa falar — e ser ouvido. Voz, presença, estrutura de fala e segurança para qualquer palco, reunião ou negociação.",
+      link: "oratoria.html#planos", label: "Conhecer o curso e a mentoria",
     },
     mestre: {
       kicker: "Formação acadêmica",
