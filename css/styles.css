@@ -2069,3 +2069,48 @@ a { color: var(--teal); text-decoration: none; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- Assinatura do estúdio ---------- */
+
+.footer-studio {
+  display: flex;
+  justify-content: center;
+  padding-top: 22px;
+}
+.upb-sign {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #5f7c88;
+  text-decoration: none;
+  transition: color .35s ease;
+}
+.upb-sign:hover { color: #7fc0cf; }
+.upb-pre {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.upb-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+.upb-mark { width: 19px; height: 14px; flex-shrink: 0; fill: currentColor; }
+.upb-mark path {
+  transform-origin: 50% 100%;
+  animation: upbBreathe 2.8s cubic-bezier(.22,1,.36,1) infinite;
+}
+.upb-mark path:nth-child(2) { animation-delay: .18s; }
+.upb-mark path:nth-child(3) { animation-delay: .36s; }
+@keyframes upbBreathe {
+  0%, 100% { opacity: .42; transform: scaleY(.86); }
+  45%      { opacity: 1;   transform: scaleY(1);   }
+}
+@media (prefers-reduced-motion: reduce) {
+  .upb-mark path { animation: none; opacity: 1; transform: none; }
+}
